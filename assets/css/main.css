@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+@font-face {
+    font-family: 'playwrite';
+    src: url("/assets/fonts/PlaywriteUSTrad-VariableFont_wght.ttf") format('truetype');
+}
+
+@theme{
+    --color-primary: #FA7500;
+    --color-secondary: #000080;
+
+    --font-playwrite: 'playwrite';
+}
