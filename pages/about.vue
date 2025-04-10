@@ -5,7 +5,7 @@
         </h1>
         <NuxtImg src="Logo.png" class="h-[30dvh] md:h-[40dvh] flex justify-self-center p-2" />
 
-        <p class="px-20 pb-5 text-center md:text-left">
+        <p class="px-5 md:px-20 pb-5">
             Children of Paradise Orphanage Home is more than just a shelter, it is a home, a family, and a place of healing for children who have faced some of life’s harshest realities. Located in Kayole Junction, Nairobi, Kenya, we were founded in 2013 by Clara Zawadi, a compassionate woman whose heart was moved by the suffering of abandoned and orphaned children in her community.
 
 Clara started with very little, just a rented space, a few borrowed resources, and a big dream. She opened her doors to children with nowhere to go: little ones who had been left behind, orphaned by tragedy, or displaced by natural disasters like fires. Over time, the number grew. Today, we care for over 100 children, each with their own story, each seeking love, care, and a future.
@@ -14,7 +14,7 @@ In 2022, we were officially registered as a Charitable Children’s Institution 
         </p>
         
 
-        <div class="md:px-20 py-5 bg-amber-100">
+        <div class="px-5 md:px-20 py-5 bg-amber-100">
             <h2 class="text-primary font-bold text-3xl md:text-3xl">
                 Our Mission <span class="text-secondary">&</span> Vision
             </h2>
@@ -36,7 +36,7 @@ In 2022, we were officially registered as a Charitable Children’s Institution 
 
         </div>
 
-        <div class="md:px-20 py-5 ">
+        <div class="px-5 md:px-20 py-5 ">
             <h2 class="text-primary font-bold text-3xl md:text-3xl">
                 What We Do
             </h2>
@@ -51,7 +51,7 @@ In 2022, we were officially registered as a Charitable Children’s Institution 
 
         </div>
 
-        <div class="md:px-20 py-5 bg-indigo-200 ">
+        <div class="px-5 md:px-20 py-5 bg-amber-100 ">
             <h2 class="text-primary font-bold text-3xl md:text-3xl">
                 How we get our children
             </h2>
@@ -65,22 +65,22 @@ In 2022, we were officially registered as a Charitable Children’s Institution 
             We work closely with community leaders, churches, well-wishers, and local authorities to identify and rescue children in need, giving them a second chance at life.
         </div>
 
-        <div class="md:px-20 py-5 ">
+        <div class="px-5 md:px-20 py-5 ">
             <h2 class="text-primary font-bold text-3xl md:text-3xl">
                 How You Can Help
             </h2>
-            We believe that no dream is too big when we come together. But we can’t do it alone. Your support, whether through donations, volunteering, or sharing our story—can change lives. Every shilling, every act of kindness, is a seed of hope planted in a child’s future.
+            We believe that no dream is too big when we come together. But we can’t do it alone. Your support, whether through donations, volunteering, or sharing our story, can change lives. Every shilling, every act of kindness, is a seed of hope planted in a child’s future.
 
         </div>
 
-        <div class="md:px-20 py-5 bg-amber-100 ">
+        <div class="px-5 md:px-20 py-5 bg-amber-100 ">
             <h2 class="text-primary font-bold text-3xl md:text-3xl">
                 Join Us
             </h2>
             Together, we can create a world where no child sleeps on the street, where every child is known, loved, and empowered to thrive.
             <div class="bg-secondary py-3 px-6 text-xl w-fit text-white"><NuxtLink to="/donate">Donate Today</NuxtLink></div>
             <br>
-            Contact us for volunteering <span class="bg-primary py-3 px-5 m-5 w-fit text-white"><NuxtLink to="/contact">Contact Us</NuxtLink></span><br/>
+            Contact us for volunteering<br><br> <span class="bg-primary text-nowrap py-3 px-5 w-fit text-white"><NuxtLink to="/contact">Contact Us</NuxtLink></span><br/>
             <br>
             Thank you for believing in their future.
 

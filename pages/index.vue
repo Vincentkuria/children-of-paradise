@@ -149,7 +149,7 @@ Join us in making a difference. Your donation today can be the reason a child sl
                 </p>
 
                 <div class="flex items-center justify-center m-5">
-                    <div class="bg-secondary py-5 px-10 text-xl"><NuxtLink to="/donate">Donate Now</NuxtLink></div>
+                    <div class="bg-secondary py-5 px-10 text-xl"><NuxtLink to="/donate">Donate Today</NuxtLink></div>
                 </div>
             </div>
         </div>
