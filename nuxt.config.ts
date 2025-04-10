@@ -6,7 +6,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
-  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/icon'],
+  modules: ['@pinia/nuxt', '@nuxt/image', '@nuxt/icon', '@nuxt/ui-pro'],
   
   vite: {
     plugins: [
