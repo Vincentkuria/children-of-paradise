@@ -72,6 +72,7 @@ Beyond providing food, clothing, and a roof over their heads, we are committed t
 But we can’t do it alone. Your support provides shelter, food, education, and care to these vulnerable children, giving them a future filled with hope.<br/>
 <br/>
 Join us in making a difference. Your donation today can be the reason a child sleeps peacefully tonight, knowing they are loved and protected. 
+<!-- TODO fix animae.css code -->
                     <NuxtImg src="aboutus-pic2.jpg" class="animate__animated animate__backOutUp max-h-[50dvh] object-cover w-full md:mr-10 mb-5 md:mb-2"/>
                 </div>
 

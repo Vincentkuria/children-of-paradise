@@ -1,11 +1,11 @@
-@import "tailwindcss";
 @import "@nuxt/ui-pro";
+@import "tailwindcss";
 
 body{
     background-color: white;
     color: black;
+    color-scheme: light;
 }
-
 @font-face {
     font-family: 'playwrite';
     src: url("/assets/fonts/PlaywriteUSTrad-VariableFont_wght.ttf") format('truetype');
