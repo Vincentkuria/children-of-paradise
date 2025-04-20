@@ -17,6 +17,11 @@ export default defineNuxtConfig({
   image: {
     format: ['webp'],
     provider: 'ipx',
+  },
+
+  alias: {
+    '@types': '/types',
   }
+
   
 })

@@ -1,5 +1,10 @@
 <template>
     <div class="md:px-20">
+      <div class="flex flex-row justify-end">
+        <div @click="showingMessages=1" :class="showingMessages==1 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">All</div>
+        <div @click="showingMessages=2" :class="showingMessages==2 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">Unread</div>
+        <div @click="showingMessages=3" :class="showingMessages==3 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">Read</div>
+      </div>
 
       <div v-for="i in 10" class="m-3 md:m-5 -z-50 bg-gray-200 shadow shadow-gray-300 p-2 relative">
         <div class="bg-gray-200 absolute top-0 right-0 flex gap-5 ps-5 mx-5 my-3">
@@ -20,6 +25,10 @@
 </template>
 
 <script setup lang="ts">
+
+// 1=all, 2=unread, 3=read
+const showingMessages=ref(2)
+
 definePageMeta({
   layout: 'adminlayout'
 })

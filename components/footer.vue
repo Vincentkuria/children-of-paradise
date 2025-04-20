@@ -12,6 +12,7 @@
       <NuxtLink to="/gallery" class="my-5 text-center">Gallery</NuxtLink>
       <NuxtLink to="/contact" class="my-5 text-center">Contact us</NuxtLink>
       <NuxtLink to="/donate" class="my-5 text-center">Donate</NuxtLink>
+      <NuxtLink to="/admin" class="my-5 text-center">Admin</NuxtLink>
       </div>
       
       <div class="p-10 flex flex-col items-center justify-around">
