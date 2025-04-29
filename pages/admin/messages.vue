@@ -1,22 +1,22 @@
 <template>
     <div class="md:px-20">
       <div class="flex flex-row justify-end">
-        <div @click="showingMessages=1" :class="showingMessages==1 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">All</div>
-        <div @click="showingMessages=2" :class="showingMessages==2 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">Unread</div>
-        <div @click="showingMessages=3" :class="showingMessages==3 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">Read</div>
+        <div @click="showingMessages=1; allMessages()" :class="showingMessages==1 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">All</div>
+        <div @click="showingMessages=2; unreadMessages()" :class="showingMessages==2 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">Unread</div>
+        <div @click="showingMessages=3; readMessages()" :class="showingMessages==3 ? 'bg-secondary' : 'bg-gray-600'" class="px-3 py-2 text-white hover:cursor-pointer">Read</div>
       </div>
 
-      <div v-for="i in 10" class="m-3 md:m-5 -z-50 bg-gray-200 shadow shadow-gray-300 p-2 relative">
+      <div v-for="message,index in messages" class="m-3 md:m-5 bg-gray-200 shadow shadow-gray-300 p-2 relative">
         <div class="bg-gray-200 absolute top-0 right-0 flex gap-5 ps-5 mx-5 my-3">
-          <input type="checkbox">
-          <Icon name="material-symbols:delete" class="text-red-500 text-xl"/>
+          <input @change="updateMarkRead(message['id'],!message['markRead'])"  type="checkbox" class="hover:cursor-pointer" :checked="message['markRead']">
+          <Icon @click="deleteMessage(message['id'])" name="material-symbols:delete" class="text-red-500 text-xl hover:cursor-pointer"/>
         </div>
-        <p><span class="font-semibold">Name:</span> Vincent Kuria Vincent Kuria</p>
-        <p><span class="font-semibold">Email:</span> <a class="underline text-blue-500" href="mailto:8pV4t@example.com">8pV4t@example.com</a></p>
-        <p><span class="font-semibold">Phone:</span><a class="underline text-blue-500" href="tel:+254712051540">+254712051540</a></p>
+        <p><span class="font-semibold">Name:</span>{{ message["name"] }}</p>
+        <p><span class="font-semibold">Email:</span> <a class="underline text-blue-500" href="mailto:8pV4t@example.com">{{ message["email"] }}</a></p>
+        <p><span class="font-semibold">Phone:</span><a class="underline text-blue-500" href="tel:+254712051540">{{ message["phone"] }}</a></p>
         <p>
-          <span class="font-semibold">Message:</span> Paystack Popup is a Javascript library that allow developers to build a secure and convenient payment flow for their web applications
-          <span class="flex justify-self-end text-xs font-mono text-gray-500">2 march 2025</span>
+          <span class="font-semibold">Message:</span> {{ message["message"] }}
+          <span class="flex justify-self-end text-xs font-mono text-gray-500">{{ message["createdAt"] }}</span>
         </p>
       </div>
 
@@ -26,14 +26,86 @@
 
 <script setup lang="ts">
 
-// 1=all, 2=unread, 3=read
-const showingMessages=ref(2)
+  // 1=all, 2=unread, 3=read
+  let showingMessages=ref(2)
+  let messages=ref([])
 
-definePageMeta({
-  layout: 'adminlayout'
-})
+  definePageMeta({
+    layout: 'adminlayout'
+  })
 
-onMounted(()=>{
-    useCurrentpathStore().path=useRoute().path
-})
+  onMounted(()=>{
+      useCurrentpathStore().path=useRoute().path
+      unreadMessages()
+  })
+
+  const allMessages=async ()=>{
+    messages.value= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/all",
+                      {
+                        method:"GET"
+                      }
+  )
+  console.log(messages.value)
+  }
+
+  const readMessages=async ()=>{
+    messages.value= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/read",
+                      {
+                        method:"GET"
+                      }
+  )
+  console.log(messages.value)
+  }
+
+  const unreadMessages=async ()=>{
+    messages.value= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/unread",
+                      {
+                        method:"GET"
+                      }
+  )
+  console.log(messages.value)
+  }
+
+  const updateMarkRead=async(id:Number,isRead:Boolean)=>{
+    console.log(isRead)
+   const response= await $fetch(useRuntimeConfig().public.baseUrl+"/messages",
+                      {
+                        method:"PATCH",
+                        params:{
+                          "id":id,
+                          "isRead":isRead
+                        }
+                      }
+  )
+  console.log(response)
+
+  if (showingMessages.value==2) {
+    unreadMessages()
+  }else if(showingMessages.value==3){
+    readMessages()
+  }
+  }
+
+  const deleteMessage=async(id:Number)=>{
+    console.log("hello")
+    if (!confirm("you cant recover this message if you delete")) {
+      return
+    }
+    const response= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/"+id,
+                      {
+                        method:"DELETE",
+                      }
+  )
+  console.log(response)
+
+  if (showingMessages.value==1) {
+    allMessages()
+  }else if(showingMessages.value==2){
+    unreadMessages()
+  }else{
+    readMessages()
+  }
+
+  }
+
 </script>

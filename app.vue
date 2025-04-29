@@ -8,7 +8,7 @@ import { UApp } from '#components';
     
     <UApp>
       <NuxtLayout>
-        <NuxtPage />
+        <NuxtPage/>
       </NuxtLayout>
     </UApp>
     

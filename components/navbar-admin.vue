@@ -1,12 +1,12 @@
 <template>
-    <div :class="isFixed ? 'fixed z-20 top-0 bg-white/5 backdrop-blur-xl' : ''" class="flex w-full items-center justify-center transition-all duration-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
+    <div :class="isFixed ? 'fixed top-0 bg-white/5 backdrop-blur-xl' : 'relative'" class="flex z-[100] w-full items-center justify-center transition-all duration-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
         <div class="w-full flex flex-row justify-between h-20 md:h-24 bg-[#D9D9D9]">
             <div class="flex flex-col justify-center px-5">
                 <h1 class="text-primary font-bold">ADMIN</h1>
                 <p>Children of Paradise</p>
             </div>
-            <div class="md:w-[60%] lg:w-[50%] relative">
-                <div class="w-24 md:w-full absolute md:static md:h-full top-5 right-5 bg-[#D9D9D9] z-20">
+            <div v-if="!(useCurrentpathStore().path=='/admin')" class="md:w-[60%] lg:w-[50%] relative">
+                <div class="w-24 md:w-full absolute md:static md:h-full top-5 right-5 bg-[#D9D9D9]">
                     <div class="md:hidden flex items-center justify-center p-3">
                         <Icon v-if="!menuOpen" @click="menuOpen = true" name="material-symbols:menu" size="30" class="text-primary"/>
                         <Icon v-else @click="menuOpen = false" name="material-symbols:close-rounded" size="30" class="text-primary"/>

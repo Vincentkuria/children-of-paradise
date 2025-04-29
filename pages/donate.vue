@@ -22,21 +22,22 @@
             
                 <div class="flex flex-col my-3">
                     <label class="text-white " for="name">Name</label>
-                    <input class="bg-gray-100 p-2" v-model="data.name" name="name" id="name" placeholder="name" required>
+                    <input @input="error=null" class="bg-gray-100 p-2" v-model="data.name" name="name" id="name" placeholder="name" required>
                 </div>
                 <div class="flex flex-col my-3">
                     <label class="text-white " for="email">Email</label>
-                    <input class="bg-gray-100 p-2" v-model="data.email" name="email" id="email" placeholder="email@example.com" required>
+                    <input @input="error=null" class="bg-gray-100 p-2" v-model="data.email" name="email" id="email" placeholder="email@example.com" required>
                 </div>
                 <div class="flex flex-col my-3">
                     <label class="text-white " for="phone">Phone</label>
-                    <input class="bg-gray-100 p-2" v-model="data.phone" name="phone" id="phone" placeholder="+254 712 345 678" required>
+                    <input @input="error=null" class="bg-gray-100 p-2" v-model="data.phone" name="phone" id="phone" placeholder="+254 712 345 678" required>
                 </div>
                 <div class="flex flex-col my-3">
                     <label class="text-white " for="message">Amount</label>
-                    <input class="bg-gray-100 p-2" v-model="data.amount" name="amount" id="amount" placeholder="100" required>
+                    <input @input="error=null" class="bg-gray-100 p-2" v-model="data.amount" name="amount" id="amount" placeholder="100" required>
                 </div>
                 <button type="submit" class="bg-secondary text-white p-3">Proceed</button>
+                <p v-if="error!=null" class="text-red-600 pt-1 text-center text-shadow-xs text-shadow-red-400"><Icon name="bx:bxs-error"/>  {{ error }}</p>
             </form>
         
         
@@ -59,6 +60,8 @@ onMounted(()=>{
 })
 
 const donationReceived=ref(false);
+let error=ref<String | null>(null)
+let emailRegexPertten="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"
 
 const data=reactive({
     name:'',
@@ -68,18 +71,55 @@ const data=reactive({
     
 })
 
-const handleSubmit=()=>{
-    // TODO: validate
-    // send to backend
-    // get access tocken
-    openPopup("access_code")
+const handleSubmit=async()=>{
+    if (!validate()) {return}
+    const response=await $fetch(useRuntimeConfig().public.baseUrl+"/donate",{
+        method: "POST",
+        body:{
+            name:data.name,
+            email:data.email,
+            phone:data.phone,
+            amount:data.amount
+        }
+    })
+    console.log(response)
+
+    const accessCode:String= (response as {accessCode:String})['accessCode']
+    openPopup(accessCode)
+
+
     // call the polling function every 3 seconds
     //then is success donationReceived.value=true
 
 
 }
 
-const openPopup=async(accessCode:string)=>{
+const validate=():Boolean=>{
+    if (data.name.trim()=="" || data.name.trim()==null || data.name.length<3 || data.name==undefined){
+        error.value= "please give a valid name"
+        return false
+    }
+
+    if (data.email.trim()=="" || data.email.trim()==null || !data.email.match(emailRegexPertten) || data.email==undefined){
+        error.value="please ensure you give a valid email address"
+        return false
+    }
+
+    if (data.phone.trim()=="" || data.phone.trim()==null || data.phone.length<6 || data.phone.length>20){
+        error.value="please ensure you give a valid phone number"
+        return false
+    }
+
+    if(data.amount==null || data.amount<=0){
+        error.value="please give a value on the amount"
+        return false
+    }
+
+    return true
+
+}
+
+const openPopup=async(accessCode:String)=>{
     if (typeof window !== 'undefined') {
         const mod = await import('@paystack/inline-js')
         const PaystackPop=mod.default

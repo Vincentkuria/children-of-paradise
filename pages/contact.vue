@@ -45,21 +45,22 @@
                     
                         <div class="flex flex-col my-3">
                             <label class="text-white " for="name">Name</label>
-                            <input class="bg-gray-100 p-2" v-model="data.name" name="name" id="name" placeholder="name" required>
+                            <input class="bg-gray-100 p-2" @input="error=null" v-model="data.name" name="name" id="name" placeholder="name" required>
                         </div>
                         <div class="flex flex-col my-3">
                             <label class="text-white " for="email">Email</label>
-                            <input class="bg-gray-100 p-2" v-model="data.email" name="email" id="email" placeholder="email@example.com" required>
+                            <input class="bg-gray-100 p-2" @input="error=null" v-model="data.email" name="email" id="email" placeholder="email@example.com" required>
                         </div>
                         <div class="flex flex-col my-3">
                             <label class="text-white " for="phone">Phone</label>
-                            <input class="bg-gray-100 p-2" v-model="data.phone" name="phone" id="phone" placeholder="+254 712 345 678" required>
+                            <input class="bg-gray-100 p-2" @input="error=null" v-model="data.phone" name="phone" id="phone" placeholder="+254 712 345 678" required>
                         </div>
                         <div class="flex flex-col my-3">
                             <label class="text-white " for="message">Message</label>
-                            <textarea class="bg-gray-100 p-2" v-model="data.message" name="message" id="message" placeholder="Please leave a message" rows="4" required></textarea>
+                            <textarea class="bg-gray-100 p-2" @input="error=null" v-model="data.message" name="message" id="message" placeholder="Please leave a message" rows="4" required></textarea>
                         </div>
                         <button type="submit" class="bg-secondary text-white p-3">Send</button>
+                        <p v-if="error!=null" class="text-red-600 pt-1 text-center text-shadow-xs text-shadow-red-400"><Icon name="bx:bxs-error"/>  {{ error }}</p>
                     </form>
                 
                 
@@ -88,14 +89,52 @@ const data=reactive({
     phone:'',
     message:'',
     read:false,
-    timestamp:Date.now()
 })
+
+let error=ref<String | null>(null)
+let emailRegexPertten="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"
 
 onMounted(()=>{
     useCurrentpathStore().path=useRoute().path
 })
+const validate=():Boolean=>{
+    if (data.name.trim()=="" || data.name.trim()==null || data.name.length<3 || data.name==undefined){
+        error.value= "please give a valid name"
+        return false
+    }
 
-const handleSubmit=()=>{
+    if (data.email.trim()=="" || data.email.trim()==null || !data.email.match(emailRegexPertten) || data.email==undefined){
+        error.value="please ensure you give a valid email address"
+        return false
+    }
 
+    if (data.phone.trim()=="" || data.phone.trim()==null || data.phone.length<6 || data.phone.length>20){
+        error.value="please ensure you give a valid phone number"
+        return false
+    }
+
+    if (data.message.trim()=="" || data.message.trim()==null || data.message==undefined){
+        error.value="the message field is empty"
+        return false
+    }
+    return true
 }
+
+const handleSubmit= async ()=>{
+    if (!validate()) {return}
+    const response = await $fetch(useRuntimeConfig().public.baseUrl+'/messages',{
+        method: 'POST',
+        body:{
+          "name": data.name,
+          "email": data.email.trim().toLowerCase(),
+          "phone": data.phone,
+          "message": data.message,
+        }
+    })
+
+    messagesent.value=true
+    console.log(response)
+}
+
+
 </script>

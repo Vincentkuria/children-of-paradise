@@ -21,6 +21,12 @@ export default defineNuxtConfig({
 
   alias: {
     '@types': '/types',
+  },
+
+  runtimeConfig: {
+    public:{
+      baseUrl:process.env.BASE_URL
+    }
   }
 
   
