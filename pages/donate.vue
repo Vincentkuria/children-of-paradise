@@ -34,7 +34,7 @@
                 </div>
                 <div class="flex flex-col my-3">
                     <label class="text-white " for="message">Amount</label>
-                    <input @input="error=null" class="bg-gray-100 p-2" v-model="data.amount" name="amount" id="amount" placeholder="100" required>
+                    <input @input="error=null" class="bg-gray-100 p-2" v-model="data.amount" type="number" name="amount" id="amount" placeholder="100" required>
                 </div>
                 <button type="submit" class="bg-secondary text-white p-3">Proceed</button>
                 <p v-if="error!=null" class="text-red-600 pt-1 text-center text-shadow-xs text-shadow-red-400"><Icon name="bx:bxs-error"/>  {{ error }}</p>
@@ -55,11 +55,19 @@
 </template>
 
 <script setup lang="ts">
+
 onMounted(()=>{
     useCurrentpathStore().path=useRoute().path
 })
 
+
 const donationReceived=ref(false);
+const paymentInterval=ref();
+
+onUnmounted(()=>{
+    clearInterval(paymentInterval.value)
+})
+
 let error=ref<String | null>(null)
 let emailRegexPertten="^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$"
 
@@ -82,15 +90,28 @@ const handleSubmit=async()=>{
             amount:data.amount
         }
     })
-    console.log(response)
 
     const accessCode:String= (response as {accessCode:String})['accessCode']
     openPopup(accessCode)
 
+    const id=(response as {donation:{id:Number}})['donation']['id']
+    console.log(id)
 
-    // call the polling function every 3 seconds
-    //then is success donationReceived.value=true
+    clearInterval(paymentInterval.value)
 
+    paymentInterval.value=setInterval(async() => {
+        const responseStatus=await $fetch(useRuntimeConfig().public.baseUrl+"/webhook/paystack/"+id, {
+            method:"GET",
+            onResponse({response,options}){
+                if (response.status==200 && response._data.status=="SUCCESS") {
+                    donationReceived.value=true
+                    clearInterval(paymentInterval.value)
+                }else if(response.status==200 && (response._data.status=="FAILED" || response._data.status=="ABANDONED")){
+                    clearInterval(paymentInterval.value)
+                }
+            }
+        })
+    },3000);
 
 }
 

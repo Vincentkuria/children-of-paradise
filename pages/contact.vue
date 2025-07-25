@@ -133,7 +133,6 @@ const handleSubmit= async ()=>{
     })
 
     messagesent.value=true
-    console.log(response)
 }
 
 

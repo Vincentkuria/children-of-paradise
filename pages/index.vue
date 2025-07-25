@@ -1,7 +1,7 @@
 <template>
     <div>
         <h1 class="text-primary text-center p-4 md:px-20 md:mt-10 font-bold text-3xl md:text-6xl">
-            <span class="text-black">At Children Of Paradise Orphanage-</span>
+            <span class="text-black">At Mama Clare Orphans and Widows-</span>
             We bring hope <span class="text-secondary"> by </span> rescuing orphaned <span class="text-secondary">and</span> abandoned children
         </h1>
 
@@ -15,7 +15,7 @@
 
             <div>
                 <UCarousel v-slot="{ item }" :items="items" auto-scroll loop wheel-gestures class="w-fit">
-                    <img :src="item" class="object-cover w-[100dvw] h-[70dvh]" />
+                    <img :src="item" class="object-cover w-[100vw] h-[70vh]" />
                 </UCarousel>
                 
             </div>
@@ -56,7 +56,7 @@ education shelter and food through out Kenya
             <div class="px-10 text-center md:text-left md:px-20 md:text-xl">
                 <h1 class="text-3xl text-secondary font-bold pb-4">About Us</h1>
                 <NuxtImg src="aboutus-pic.jpg" class="w-full min-h-[40dvh] object-cover md:w-[50%] float-left md:mr-10 mb-5 md:mb-2"/>
-                <span>Children of Paradise Orphanage Home is a sanctuary for vulnerable children, located in Kayole Junction, Nairobi, Kenya. Founded in 2013 by Clara Zawadi with a simple yet powerful vision to give every child a place to call home. What started as a small act of kindness has grown into a safe haven for children who have nowhere else to turn.
+                <span>Mama Clare Orphans and Widows is a sanctuary for vulnerable children, located in Kayole Junction, Nairobi, Kenya. Founded in 2013 by Clara Zawadi with a simple yet powerful vision to give every child a place to call home. What started as a small act of kindness has grown into a safe haven for children who have nowhere else to turn.
 Many of the children in our care have faced heartbreaking circumstances, some abandoned by their parents, others left orphaned by tragedy, and many displaced by fires or other calamities. But here, they find more than just shelter. They find love, family, and a chance to dream again.
 Beyond providing food, clothing, and a roof over their heads, we are committed to giving these children a future. Through education, mentorship, and emotional support, we nurture their potential and help them rebuild their lives with dignity and hope. <span class="text-secondary text-nowrap"><NuxtLink to="/about">Read more ...</NuxtLink></span>
             </span>
@@ -68,7 +68,7 @@ Beyond providing food, clothing, and a roof over their heads, we are committed t
                 </h1>
                 
                 <div class="flex flex-col-reverse md:flex-row">
-                No child should have to face the world alone. Yet, thousands of children lack the warmth of a home, the security of a bed, and the love of a family. At Children Of Paradise Orphanage, we believe every child deserves a place to call home, a safe haven where they can grow, learn, and dream.
+                No child should have to face the world alone. Yet, thousands of children lack the warmth of a home, the security of a bed, and the love of a family. At Mama Clare Orphans and Widows, we believe every child deserves a place to call home, a safe haven where they can grow, learn, and dream.
 But we can’t do it alone. Your support provides shelter, food, education, and care to these vulnerable children, giving them a future filled with hope.<br/>
 <br/>
 Join us in making a difference. Your donation today can be the reason a child sleeps peacefully tonight, knowing they are loved and protected. 

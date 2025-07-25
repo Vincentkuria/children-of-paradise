@@ -60,6 +60,7 @@ let open=ref(false)
 const galleryImage=ref<HTMLInputElement | null>(null)
 const imageUrl=ref('')
 const images=ref([])
+const token=ref<string | null>(null)
 let selectedFile=ref<Blob|null>(null)
 let title=ref('')
 let uploadSuccessfully=ref(false)
@@ -69,6 +70,12 @@ definePageMeta({
 })
 
 onMounted(()=>{
+    token.value=localStorage.getItem("token")
+
+    if (!token.value) {
+      navigateTo("/admin")
+    }
+
     useCurrentpathStore().path=useRoute().path
     allGalleryImages()
 })
@@ -94,7 +101,10 @@ const closeSlideOver=()=>{
 
 const allGalleryImages= async()=>{
   images.value=await $fetch(useRuntimeConfig().public.baseUrl+"/gallery",{
-                                method: 'GET'
+                                method: 'GET',
+                                headers:{
+                                  Authorization: `Bearer ${token.value}`
+                                },
                               })
 
                               console.log(images.value)
@@ -105,7 +115,10 @@ const deleteGalleryImage= async(id:Number)=>{
     return
   }
 const response=await $fetch(useRuntimeConfig().public.baseUrl+"/gallery/"+id,{
-                                method: 'DELETE'
+                                method: 'DELETE',
+                                headers:{
+                                  Authorization: `Bearer ${token.value}`
+                                },
                               })
                               console.log(response)
                               allGalleryImages()
@@ -120,6 +133,9 @@ const UploadImage= async()=>{
 
   const response=await $fetch(useRuntimeConfig().public.baseUrl+"/gallery",{
     method:"POST",
+    headers:{
+                                  Authorization: `Bearer ${token.value}`
+                                },
     body:formData
   })
 

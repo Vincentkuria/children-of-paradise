@@ -1,7 +1,7 @@
 <template>
     <div :class="isFixed ? 'fixed top-0  bg-white/5 backdrop-blur-xl' : 'relative'" class="flex z-[100] w-full items-center justify-center transition-all duration-300 drop-shadow-[0_2px_10px_rgba(0,0,0,0.1)]">
         <div :class="isFixed ? 'mt-5': 'mt-10'" class="w-[80%] flex flex-row justify-between h-20 md:h-24 bg-[#D9D9D9]">
-            <NuxtLink to="/"><NuxtImg src="/Logo.png" class="w-20 md:w-24 md:h-24 p-2" /></NuxtLink>
+            <NuxtLink to="/"><NuxtImg src="/Logo.png" class="w-20 md:w-24 md:h-24" /></NuxtLink>
             <div class="md:w-[60%] lg:w-[50%] relative">
                 <div class="w-24 md:w-full absolute md:static md:h-full top-5 right-0 bg-[#D9D9D9] z-20">
                     <div class="md:hidden flex items-center justify-center p-3">

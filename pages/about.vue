@@ -1,14 +1,14 @@
 <template>
     <div>
         <h1 class="text-primary text-center p-4 md:px-20 md:mt-10 font-bold text-3xl md:text-6xl">
-            <span class="text-secondary">About</span><br/> Children Of Paradise Orphanage Home
+            <span class="text-secondary">About</span><br/> Mama Clare Orphans and Widows
         </h1>
         <NuxtImg src="Logo.png" class="h-[30dvh] md:h-[40dvh] flex justify-self-center p-2" />
 
         <p class="px-5 md:px-20 pb-5">
-            Children of Paradise Orphanage Home is more than just a shelter, it is a home, a family, and a place of healing for children who have faced some of life’s harshest realities. Located in Kayole Junction, Nairobi, Kenya, we were founded in 2013 by Clara Zawadi, a compassionate woman whose heart was moved by the suffering of abandoned and orphaned children in her community.
+            Mama Clare Orphans and Widows is more than just a shelter, it is a home, a family, and a place of healing for children who have faced some of life’s harshest realities. Located in Kayole Junction, Nairobi, Kenya, we were founded in 2013 by Clara Zawadi, a compassionate woman whose heart was moved by the suffering of abandoned and orphaned children in her community.
 
-Clara started with very little, just a rented space, a few borrowed resources, and a big dream. She opened her doors to children with nowhere to go: little ones who had been left behind, orphaned by tragedy, or displaced by natural disasters like fires. Over time, the number grew. Today, we care for over 100 children, each with their own story, each seeking love, care, and a future.
+Clara started with very little, just a rented space, a few borrowed resources, and a big dream. She opened her doors to children with nowhere to go, little ones who had been left behind, orphaned by tragedy, or displaced by natural disasters like fires. Over time, the number grew. Today, we care for over 100 children, each with their own story, each seeking love, care, and a future.
 
 In 2022, we were officially registered as a Charitable Children’s Institution (CCI), a milestone that reaffirmed our commitment to transparency, accountability, and excellence in caregiving
         </p>

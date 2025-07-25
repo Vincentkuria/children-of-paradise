@@ -5,6 +5,7 @@
                 <h1 class="text-primary font-bold">ADMIN</h1>
                 <p>Children of Paradise</p>
             </div>
+            
             <div v-if="!(useCurrentpathStore().path=='/admin')" class="md:w-[60%] lg:w-[50%] relative">
                 <div class="w-24 md:w-full absolute md:static md:h-full top-5 right-5 bg-[#D9D9D9]">
                     <div class="md:hidden flex items-center justify-center p-3">
@@ -14,19 +15,16 @@
                     <ul :class="menuOpen ? 'flex' : 'hidden'" class=" md:flex flex-col md:h-full md:flex-row justify-around items-center gap-3 md:gap-0 text-white md:text-black bg-secondary md:bg-[#D9D9D9] shadow-2xl shadow-gray-400 md:shadow-none pt-3 md:p-0">
                         <li class="font-thin hover:text-primary"><NuxtLink @click="menuOpen=false" :class="currentRoute() == '/admin/messages' ? 'after:bg-primary after:h-0.5 after:w-full after:block' : ''" to="/admin/messages">Messages</NuxtLink></li>
                         <li class="font-thin hover:text-primary"><NuxtLink @click="menuOpen=false" :class="currentRoute() == '/admin/gallery' ? 'after:bg-primary after:h-0.5 after:w-full after:block' : ''" to="/admin/gallery">Gallery</NuxtLink></li>
-                        <li class="font-thin hover:text-primary"><NuxtLink @click="menuOpen=false" :class="currentRoute() == '/admin/donations' ? 'after:bg-primary after:h-0.5 after:w-full after:block' : ''" to="/admin/donations">Donations</NuxtLink></li>
-                        <div class="bg-primary font-playwrite h-full md:h-fit p-3 flex items-center text-white text-nowrap"><NuxtLink @click="menuOpen=false">Log Out</NuxtLink></div>
+                        <div class="bg-primary font-playwrite h-full md:h-fit hover:cursor-pointer p-3 flex items-center text-white text-nowrap"><NuxtLink @click="menuOpen=false; logOut()">Log Out</NuxtLink></div>
                     </ul>
                 </div>
-                
             </div>
-            
+
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
-
 const menuOpen = ref(false)
 const isFixed = ref(false)
 const currentRoute=()=>{
@@ -43,6 +41,11 @@ onMounted(()=>{
 
 onBeforeUnmount(()=>{
     window.removeEventListener("scroll", handleScroll)
-})  
+}) 
+
+const logOut=()=>{
+    localStorage.removeItem("token")
+    navigateTo("/admin")
+}
 
 </script>

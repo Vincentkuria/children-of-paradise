@@ -16,7 +16,7 @@
         <p><span class="font-semibold">Phone:</span><a class="underline text-blue-500" href="tel:+254712051540">{{ message["phone"] }}</a></p>
         <p>
           <span class="font-semibold">Message:</span> {{ message["message"] }}
-          <span class="flex justify-self-end text-xs font-mono text-gray-500">{{ message["createdAt"] }}</span>
+          <span class="flex justify-self-end text-xs font-mono text-gray-500">{{ formatTimeAgo(message["createdAt"]) }}</span>
         </p>
       </div>
 
@@ -29,20 +29,37 @@
   // 1=all, 2=unread, 3=read
   let showingMessages=ref(2)
   let messages=ref([])
+  const token=ref<string | null>(null)
 
   definePageMeta({
     layout: 'adminlayout'
   })
 
   onMounted(()=>{
-      useCurrentpathStore().path=useRoute().path
-      unreadMessages()
+    token.value=localStorage.getItem("token")
+
+    if (!token.value) {
+      console.log(token.value)
+      navigateTo("/admin")
+    }
+    useCurrentpathStore().path=useRoute().path
+    unreadMessages()
   })
 
   const allMessages=async ()=>{
     messages.value= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/all",
                       {
-                        method:"GET"
+                        method:"GET",
+
+                        headers:{
+                          Authorization: `Bearer ${token.value}`
+                        },
+
+                        onResponse({response,options}){
+                          if (response.status==400 || response.status==403) {
+                            navigateTo("/admin")
+                          }
+                        }
                       }
   )
   console.log(messages.value)
@@ -51,7 +68,17 @@
   const readMessages=async ()=>{
     messages.value= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/read",
                       {
-                        method:"GET"
+                        method:"GET",
+
+                        headers:{
+                          Authorization: `Bearer ${token.value}`
+                        },
+
+                        onResponse({response,options}){
+                          if (response.status==400 || response.status==403) {
+                            navigateTo("/admin")
+                          }
+                        }
                       }
   )
   console.log(messages.value)
@@ -60,7 +87,17 @@
   const unreadMessages=async ()=>{
     messages.value= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/unread",
                       {
-                        method:"GET"
+                        method:"GET",
+
+                        headers:{
+                          Authorization: `Bearer ${token.value}`
+                        },
+
+                        onResponse({response,options}){
+                          if (response.status==400 || response.status==403) {
+                            navigateTo("/admin")
+                          }
+                        }
                       }
   )
   console.log(messages.value)
@@ -74,6 +111,16 @@
                         params:{
                           "id":id,
                           "isRead":isRead
+                        },
+
+                        headers:{
+                          Authorization: `Bearer ${token.value}`
+                        },
+
+                        onResponse({response,options}){
+                          if (response.status==400 || response.status==403) {
+                            navigateTo("/admin")
+                          }
                         }
                       }
   )
@@ -94,6 +141,16 @@
     const response= await $fetch(useRuntimeConfig().public.baseUrl+"/messages/"+id,
                       {
                         method:"DELETE",
+
+                        headers:{
+                          Authorization: `Bearer ${token.value}`
+                        },
+
+                        onResponse({response,options}){
+                          if (response.status==400 || response.status==403) {
+                            navigateTo("/admin")
+                          }
+                        }
                       }
   )
   console.log(response)
@@ -107,5 +164,28 @@
   }
 
   }
+
+  function formatTimeAgo(dateString: string) {
+  const now = new Date();
+  const past = new Date(dateString);
+  const diffInSeconds = Math.floor((now.getTime() - past.getTime()) / 1000);
+
+  const minutes = Math.floor(diffInSeconds / 60);
+  const hours = Math.floor(diffInSeconds / 3600);
+  const days = Math.floor(diffInSeconds / 86400);
+
+  if (days >= 5) {
+    // If more than 5 days, show the full date
+    return past.toLocaleDateString(); 
+  } else if (days >= 1) {
+    return `${days} day${days > 1 ? 's' : ''} ago`;
+  } else if (hours >= 1) {
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+  } else if (minutes >= 1) {
+    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  } else {
+    return 'Just now';
+  }
+}
 
 </script>
