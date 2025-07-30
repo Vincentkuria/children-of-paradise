@@ -40,7 +40,7 @@ const login=async()=>{
     if(credentials.email.trim()=='' || credentials.password.trim()=='' ){return}
     const res:any=await $fetch(useRuntimeConfig().public.baseUrl+"/auth/login",{
         method:'POST',
-        params:credentials,
+        body:credentials,
         onResponse({response,options}){
             if(response.status==200){
                 localStorage.setItem("token", response._data.token)
