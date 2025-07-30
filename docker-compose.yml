@@ -5,4 +5,4 @@ services:
       - "3000:3000"
     restart: unless-stopped
     environment:
-      - BASE_URL=${BASE_URL}
+      - NUXT_PUBLIC_BASE_URL=${BASE_URL}
