@@ -2,9 +2,9 @@
     <div>
         <h1 class="text-primary text-center p-4 md:px-20 md:mt-10 font-bold text-3xl md:text-6xl">
             <div class="flex flex-row justify-self-center justify-items-center gap-3">
-                <span><NuxtImg  src="donate-pic1.jpg" class="h-[3rem] w-[8rem] md:h-[5rem] md:w-[10rem] rounded-full object-cover" /></span>
+                <span><NuxtImg format="webp" src="/donate-pic1.jpg" class="h-[3rem] w-[8rem] md:h-[5rem] md:w-[10rem] rounded-full object-cover" /></span>
                 <span class="text-secondary text-center">Donate</span>
-                <span><NuxtImg src="donate-pic2.jpg" class="h-[3rem] w-[8rem] md:h-[5rem] md:w-[10rem] rounded-full object-cover" /></span>
+                <span><NuxtImg format="webp" src="/donate-pic2.jpg" class="h-[3rem] w-[8rem] md:h-[5rem] md:w-[10rem] rounded-full object-cover" /></span>
             </div> Your Kindness Matters
         </h1>
 

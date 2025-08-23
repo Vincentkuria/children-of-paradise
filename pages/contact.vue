@@ -6,7 +6,7 @@
         <div class="w-[90dvw] h-fit flex flex-col md:flex-row justify-self-center">
             <div class="w-full md:w-[30%] h-fit md:h-full bg-secondary text-white px-2 md:ps-2">
                 <div class="bg-white my-2">
-                    <NuxtImg src="Logo.png" class="w-40"/>
+                    <NuxtImg format="webp" src="/Logo.png" class="w-40"/>
                 </div>
                 <div>
                     <div class="flex flex-row items-center gap-3 m-5">

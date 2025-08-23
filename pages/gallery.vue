@@ -5,7 +5,7 @@
         </h1>
         <masonry-wall :items="images as Array<{id:number, image:string, title:string, createdAt:string}>" :ssr-columns=2 :max-columns=6 :min-columns=1 :gap=10>
             <template #default="{ item, index }" >
-              <NuxtImg :src="useRuntimeConfig().public.baseUrl+'/'+ item['image'] as string" class="w-full h-full" />
+              <NuxtImg format="webp" :src="useRuntimeConfig().public.baseUrl+'/'+ item['image'] as string" class="w-full h-full" />
               <p class="text-center bg-secondary text-white py-2 text-xs md:text-sm font-mono">{{ item['title'] }}</p>
             </template>
         </masonry-wall>

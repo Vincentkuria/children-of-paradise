@@ -3,7 +3,7 @@
         <h1 class="text-primary text-center p-4 md:px-20 md:mt-10 font-bold text-3xl md:text-6xl">
             <span class="text-secondary">About</span><br/> Mama Clare Orphans and Widows
         </h1>
-        <NuxtImg src="Logo.png" class="h-[30dvh] md:h-[40dvh] flex justify-self-center p-2" />
+        <NuxtImg format="webp" src="/Logo.png" class="h-[30dvh] md:h-[40dvh] flex justify-self-center p-2" />
 
         <p class="px-5 md:px-20 pb-5">
             Mama Clare Orphans and Widows is more than just a shelter, it is a home, a family, and a place of healing for children who have faced some of life’s harshest realities. Located in Kayole Junction, Nairobi, Kenya, we were founded in 2013 by Clara Zawadi, a compassionate woman whose heart was moved by the suffering of abandoned and orphaned children in her community.
