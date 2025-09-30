@@ -15,7 +15,6 @@
 <script setup lang="ts">
 onMounted(()=>{
     useCurrentpathStore().path=useRoute().path
-    console.log(images.value)
 })
 
 const {data:images}=await useFetch(useRuntimeConfig().public.baseUrl+"/gallery",{
