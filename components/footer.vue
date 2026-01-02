@@ -53,7 +53,7 @@
                 </div>
                 
                 <p>Vinteque is one of the best software development company in Kenya.</p>
-                <p><span class="font-bold">contact us:</span> +254712051540</p>
+                <p><span class="font-bold">contact us:</span> +254704466984</p>
             </div>
             </a>
             

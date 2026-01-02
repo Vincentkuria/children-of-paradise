@@ -159,6 +159,14 @@ Join us in making a difference. Your donation today can be the reason a child sl
 
 <script setup lang="ts">
 
+    useHead({
+    title:'We bring hope by rescuing orphaned and abandoned children',
+    meta:[
+        {name:'description', content:"Mama Clare Orphans and Widows is more than just a shelter, it is a home, a family, and a place of healing for children who have faced some of life’s harshest realities. Located in Kayole Junction, Nairobi, Kenya."}
+    ]
+})
+
+
 const items=<string[]>[
     "heropics/1.jpg",
     "heropics/2.jpg",

@@ -6,12 +6,28 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
 
-  modules: ['@nuxt/image', '@nuxt/icon', '@nuxt/ui', '@pinia/nuxt'],
+  modules: [
+    '@nuxt/image',
+    '@nuxt/icon',
+    '@nuxt/ui',
+    '@pinia/nuxt',
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap'
+  ],
   
   vite: {
     plugins: [
       tailwindcss(),
     ],
+  },
+
+  site:{
+    url:'https://mamaclare.org/',
+    name:'Mama Clare Orphans and Widows'
+  },
+
+   robots:{
+    disallow:['/admin'],
   },
 
   image: {

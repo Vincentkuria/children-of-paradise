@@ -26,5 +26,12 @@ const {data:images,status,refresh}=await useFetch(useRuntimeConfig().public.base
   method: 'GET'
 })
 
+useHead({
+    title:'Gallery',
+    meta:[
+        {name:'description', content:"View some of our happy and memorable moments"}
+    ]
+})
+
 
 </script>

@@ -83,6 +83,13 @@
 
 const messagesent=ref(false);
 
+useHead({
+    title:'Contact Us',
+    meta:[
+        {name:'description', content:"Get in touch with us and help us spread love to children allover kenya and Africa"}
+    ]
+})
+
 const data=reactive({
     name:'',
     email:'',

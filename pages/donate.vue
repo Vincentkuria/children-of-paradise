@@ -33,7 +33,7 @@
                     <input @input="error=null" class="bg-gray-100 p-2" v-model="data.phone" name="phone" id="phone" placeholder="+254 712 345 678" required>
                 </div>
                 <div class="flex flex-col my-3">
-                    <label class="text-white " for="message">Amount</label>
+                    <label class="text-white " for="message">Amount (ksh)</label>
                     <input @input="error=null" class="bg-gray-100 p-2" v-model="data.amount" type="number" name="amount" id="amount" placeholder="100" required>
                 </div>
                 <button type="submit" class="bg-secondary text-white p-3">Proceed</button>
@@ -45,7 +45,7 @@
                 <div class="w-full h-fit flex justify-center ">
                     <Icon name="material-symbols:check-circle-rounded" class="text-6xl text-white m-5"/>
                 </div>
-                <p class="justify-center text-white font-bold text-4xl text-center">Dontion received successfully.<br>We Apreciate Your Kindness</p>
+                <p class="justify-center text-white font-bold text-4xl text-center">Dontion received successfully.<br>We Appreciate Your Kindness</p>
             </div>
         
         
@@ -58,6 +58,13 @@
 
 onMounted(()=>{
     useCurrentpathStore().path=useRoute().path
+})
+
+useHead({
+    title:'Donate',
+    meta:[
+        {name:'description', content:"Your donation will directly helping us create a brighter and more stable future for the children in our care"}
+    ]
 })
 
 
@@ -87,7 +94,7 @@ const handleSubmit=async()=>{
             name:data.name,
             email:data.email,
             phone:data.phone,
-            amount:data.amount
+            amount:data.amount!*100
         }
     })
 

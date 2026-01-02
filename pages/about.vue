@@ -93,4 +93,12 @@ In 2022, we were officially registered as a Charitable Children’s Institution 
 onMounted(()=>{
     useCurrentpathStore().path=useRoute().path
 })
+
+useHead({
+    title:'About Us',
+    meta:[
+        {name:'description', content:"Together, we can create a world where no child sleeps on the street, where every child is known, loved, and empowered to thrive."}
+    ]
+})
+
 </script>
